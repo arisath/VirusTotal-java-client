@@ -18,19 +18,18 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RestController
 public class fileReportController
 {
+    @Value("${virusTotalUri}")
+    private String uri;
 
-    String uri = "https://www.virustotal.com/vtapi/v2/file/";
-    String apiKey = "ca2f0d1535e2289ff920b142f3f5981fbcfd03b8f46c7da62c722a3ada989321";
+    @Value("${apiKey}")
+    private String apiKey;
 
-  /*     @Value("${app.apiKey}")
-       private String apiKey;
-*/
         @RequestMapping("/file/report")
-        public String getReport (@RequestParam("fileDigest") String fileHash)
+        public String getFileReport (@RequestParam("fileDigest") String fileHash)
         {
 
         RestTemplate restTemplate = new RestTemplate();
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri+"report")
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri+"file/report")
                 .queryParam("apikey", apiKey)
                 .queryParam("resource", fileHash);
 
@@ -39,13 +38,27 @@ public class fileReportController
     }
 
     @RequestMapping("/file/behaviour")
-    public String getBehaviour (@RequestParam("fileDigest") String fileHash)
+    public String getFileBehaviour (@RequestParam("fileDigest") String fileHash)
     {
 
         RestTemplate restTemplate = new RestTemplate();
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri+"behaviour")
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri+"file/behaviour")
                 .queryParam("apikey", apiKey)
                 .queryParam("hash", fileHash);
+
+        String result = restTemplate.getForObject(builder.toUriString(), String.class);
+        return result ;
+    }
+
+
+    @RequestMapping("/url/report")
+    public String getUrlReport (@RequestParam("url") String url)
+    {
+
+        RestTemplate restTemplate = new RestTemplate();
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri+"url/report")
+                .queryParam("apikey", apiKey)
+                .queryParam("resource", url);
 
         String result = restTemplate.getForObject(builder.toUriString(), String.class);
         return result ;
