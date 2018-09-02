@@ -64,4 +64,17 @@ public class fileReportController
         return result ;
     }
 
+    @RequestMapping("/ip-address/report")
+    public String getIpAddressReport (@RequestParam("ipAddress") String ipAddress)
+    {
+
+        RestTemplate restTemplate = new RestTemplate();
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri+"ip-address/report")
+                .queryParam("apikey", apiKey)
+                .queryParam("ip", ipAddress);
+
+        String result = restTemplate.getForObject(builder.toUriString(), String.class);
+        return result ;
+    }
+
 }
