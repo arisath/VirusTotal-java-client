@@ -23,6 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -33,22 +34,43 @@ import org.springframework.test.web.servlet.MockMvc;
 @AutoConfigureMockMvc
 public class VirusTotalControllerTests {
 
+    @Value("${test.md5}")
+    private String testMd5;
+
+    @Value("${test.url}")
+    private String testUrl;
+
+    @Value("${test.ip}")
+    private String testIp;
+
+    @Value("${test.domain}")
+    private String testDomain;
+
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void noParamGreetingShouldReturnDefaultMessage() throws Exception {
-
-        this.mockMvc.perform(get("/greeting")).andDo(print()).andExpect(status().isOk())
-                .andExpect(jsonPath("$.content").value("Hello, World!"));
+    public void getFileReportShouldReturnOK() throws Exception {
+        this.mockMvc.perform(get("/file/report").param("fileDigest", testMd5))
+                .andDo(print()).andExpect(status().isOk());
     }
 
     @Test
-    public void paramGreetingShouldReturnTailoredMessage() throws Exception {
+    public void getUrlReportShouldReturnOK() throws Exception {
+        this.mockMvc.perform(get("/url/report").param("url", testUrl))
+                .andDo(print()).andExpect(status().isOk());
+    }
 
-        this.mockMvc.perform(get("/greeting").param("name", "Spring Community"))
-                .andDo(print()).andExpect(status().isOk())
-                .andExpect(jsonPath("$.content").value("Hello, Spring Community!"));
+    @Test
+    public void getIpReportShouldReturnOK() throws Exception {
+        this.mockMvc.perform(get("/ip-address/report").param("ipAddress", testIp))
+                .andDo(print()).andExpect(status().isOk());
+    }
+
+    @Test
+    public void getDomainReportShouldReturnOK() throws Exception {
+        this.mockMvc.perform(get("/domain/report").param("domain", testDomain))
+                .andDo(print()).andExpect(status().isOk());
     }
 
 }
