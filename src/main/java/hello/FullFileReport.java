@@ -4,5 +4,7 @@ import java.util.ArrayList;
 
 public class FullFileReport {
 
-    private ArrayList scans;
+    private ArrayList<Scan> scans;
+    private int numberOfScans;
+    private int numberOfDetections;
 }
