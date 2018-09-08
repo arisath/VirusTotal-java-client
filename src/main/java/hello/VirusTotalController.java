@@ -1,12 +1,17 @@
 package hello;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @RestController
 public class VirusTotalController {
@@ -28,22 +33,6 @@ public class VirusTotalController {
         String result = restTemplate.getForObject(builder.toUriString(), String.class);
         return result;
     }
-
-    Ø
-
-    @RequestMapping("/file/scan", method = RequestMethod.POST)
-
-    public String scanFile(@RequestParam("file") String file) {
-
-        RestTemplate restTemplate = new RestTemplate();
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "file/scan")
-                .queryParam("apikey", apiKey)
-                .queryParam("file", file);
-
-        String result = restTemplate.getForObject(builder.toUriString(), String.class);
-        return result;
-    }
-
 
     @RequestMapping("/file/behaviour")
     public String getFileBehaviour(@RequestParam("fileDigest") String fileHash) {
@@ -70,6 +59,18 @@ public class VirusTotalController {
         return result;
     }
 
+    @RequestMapping(value="/url/scan",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public String scanUrl(@RequestBody VirusTotalUrl url) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "url/scan")
+                .queryParam("apikey", apiKey)
+                .queryParam("url", url.getUrl());
+
+        String result = restTemplate.postForObject(builder.toUriString(), null, String.class);
+        return result;
+    }
+
     @RequestMapping("/ip-address/report")
     public String getIpAddressReport(@RequestParam("ipAddress") String ipAddress) {
 
@@ -93,5 +94,7 @@ public class VirusTotalController {
         String result = restTemplate.getForObject(builder.toUriString(), String.class);
         return result;
     }
+
+
 
 }
