@@ -8,13 +8,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 
 @RestController
-public class VirusTotalController {
+public class VirusTotalController
+{
     @Value("${virusTotalUri}")
     private String uri;
 
     @Value("${apiKey}")
     private String apiKey;
-
 
     @RequestMapping("/file/report")
     public String getFileReport(@RequestParam("fileDigest") String fileHash) {
@@ -40,7 +40,6 @@ public class VirusTotalController {
         return result;
     }
 
-
     @RequestMapping("/url/report")
     public String getUrlReport(@RequestParam("url") String url) {
 
@@ -53,7 +52,7 @@ public class VirusTotalController {
         return result;
     }
 
-    @RequestMapping(value="/url/scan",  method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/url/scan", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public String scanUrl(@RequestBody VirusTotalUrl url) {
 
         RestTemplate restTemplate = new RestTemplate();
@@ -66,6 +65,7 @@ public class VirusTotalController {
     }
 
     @RequestMapping("/domain/report")
+
     public String getDomainReport(@RequestParam("domain") String domain) {
 
         RestTemplate restTemplate = new RestTemplate();
@@ -99,10 +99,9 @@ public class VirusTotalController {
 
 
         String result = restTemplate.getForObject(builder.toUriString(), String.class);
-        if(result!=null) {
+        if (result != null) {
             return result;
-        }
-        else return "No comments for "+fileHash;
+        } else return "No comments for " + fileHash;
     }
 
 
