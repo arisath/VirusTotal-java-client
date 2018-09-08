@@ -1,6 +1,7 @@
 package hello;
 
-public class VirusTotal {
+public class VirusTotal
+{
 }
 
  class VirusTotalUrl
