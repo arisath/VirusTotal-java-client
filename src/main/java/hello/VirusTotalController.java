@@ -16,7 +16,7 @@ public class VirusTotalController
     @Value("${apiKey}")
     private String apiKey;
 
-    @RequestMapping("/file/report")
+/*    @RequestMapping("/file/report")
     public String getFileReport(@RequestParam("fileDigest") String fileHash) {
 
         RestTemplate restTemplate = new RestTemplate();
@@ -26,6 +26,19 @@ public class VirusTotalController
 
         String result = restTemplate.getForObject(builder.toUriString(), String.class);
         return result;
+    }*/
+
+
+    @RequestMapping("/file/report")
+    public String getFileReport(@RequestParam("fileDigest") String fileHash) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "file/report")
+                .queryParam("apikey", apiKey)
+                .queryParam("resource", fileHash);
+
+        FullFileReport result = restTemplate.getForObject(builder.toUriString(), FullFileReport.class);
+        return result.toString();
     }
 
     @RequestMapping("/file/behaviour")

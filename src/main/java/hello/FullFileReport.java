@@ -1,19 +1,19 @@
 package hello;
 
-import java.util.ArrayList;
-
 public class FullFileReport {
 
-    private ArrayList<Scan> scans;
-    private int total;
-
-    public ArrayList<Scan> getScans() {
+    public Scan getScans() {
         return scans;
     }
 
-    public void setScans(ArrayList<Scan> scans) {
+    public void setScans(Scan scans) {
         this.scans = scans;
     }
+
+    private Scan scans;
+    private int total;
+
+
 
     public int getTotal() {
         return total;
@@ -114,4 +114,21 @@ public class FullFileReport {
     private String sha256;
     private String md5;
 
+    @Override
+    public String toString() {
+        return "FullFileReport{" +
+                "scans=" + scans +
+                ", total=" + total +
+                ", positives=" + positives +
+                ", scan_id='" + scan_id + '\'' +
+                ", sha1='" + sha1 + '\'' +
+                ", resource='" + resource + '\'' +
+                ", response_code='" + response_code + '\'' +
+                ", scan_date='" + scan_date + '\'' +
+                ", permalink='" + permalink + '\'' +
+                ", verbose_msg='" + verbose_msg + '\'' +
+                ", sha256='" + sha256 + '\'' +
+                ", md5='" + md5 + '\'' +
+                '}';
+    }
 }
