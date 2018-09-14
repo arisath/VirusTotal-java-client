@@ -1,5 +1,6 @@
 package hello;
 
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -8,16 +9,15 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 
 @RestController
-public class VirusTotalController
-{
+public class VirusTotalController {
     @Value("${virusTotalUri}")
     private String uri;
 
     @Value("${apiKey}")
     private String apiKey;
 
-/*    @RequestMapping("/file/report")
-    public String getFileReport(@RequestParam("fileDigest") String fileHash) {
+    @RequestMapping("/file/reports")
+    public String getFileReports(@RequestParam("fileDigest") String fileHash) {
 
         RestTemplate restTemplate = new RestTemplate();
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "file/report")
@@ -26,19 +26,21 @@ public class VirusTotalController
 
         String result = restTemplate.getForObject(builder.toUriString(), String.class);
         return result;
-    }*/
+    }
 
 
     @RequestMapping("/file/report")
-    public String getFileReport(@RequestParam("fileDigest") String fileHash) {
+    public FullFileReport getFileReport(@RequestParam("fileDigest") String fileHash) {
 
         RestTemplate restTemplate = new RestTemplate();
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "file/report")
                 .queryParam("apikey", apiKey)
                 .queryParam("resource", fileHash);
 
-        FullFileReport result = restTemplate.getForObject(builder.toUriString(), FullFileReport.class);
-        return result.toString();
+        FullFileReport fileReport = restTemplate.getForObject(builder.toUriString(), FullFileReport.class);
+
+
+        return fileReport;
     }
 
     @RequestMapping("/file/behaviour")
