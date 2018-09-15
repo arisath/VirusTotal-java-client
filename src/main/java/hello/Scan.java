@@ -1,9 +1,11 @@
 package hello;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Scan {
 
     private String detected;
-
     private String version;
     private String result;
     private String update;

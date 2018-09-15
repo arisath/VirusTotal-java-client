@@ -4,7 +4,7 @@ import java.util.Map;
 
 public class FullFileReport {
 
-    public Map<String,Scan> getScans() {
+    public Map<String, Scan> getScans() {
         return scans;
     }
 
@@ -20,7 +20,7 @@ public class FullFileReport {
     private String sha1;
     private String resource;
     private String response_code;
-    private String  scan_date;
+    private String scan_date;
     private String permalink;
     private String verbose_msg;
     private String sha256;

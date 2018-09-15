@@ -54,8 +54,8 @@ public class VirusTotalController {
         return result;
     }
 
-    @RequestMapping("/url/report")
-    public String getUrlReport(@RequestParam("url") String url) {
+    @RequestMapping("/url/reports")
+    public String getUrlReports(@RequestParam("url") String url) {
 
         RestTemplate restTemplate = new RestTemplate();
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "url/report")
@@ -66,7 +66,21 @@ public class VirusTotalController {
         return result;
     }
 
+    @RequestMapping("/url/report")
+    public FullFileReport getUrlReport(@RequestParam("url") String url) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "url/report")
+                .queryParam("apikey", apiKey)
+                .queryParam("resource", url);
+
+        FullFileReport result = restTemplate.getForObject(builder.toUriString(), FullFileReport.class);
+        return result;
+    }
+
+
     @RequestMapping(value = "/url/scan", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+
     public String scanUrl(@RequestBody VirusTotalUrl url) {
 
         RestTemplate restTemplate = new RestTemplate();

@@ -4,6 +4,8 @@ import java.util.Map;
 
 public class Scans {
 
+    private Map<String, Scan> map;
+
     public Map<String, Scan> getMap() {
         return map;
     }
@@ -12,6 +14,5 @@ public class Scans {
         this.map = map;
     }
 
-    private Map<String, Scan> map;
 
 }
