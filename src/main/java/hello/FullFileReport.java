@@ -15,7 +15,16 @@ public class FullFileReport {
     private Map<String, Scan> scans;
     private int total;
 
-
+    private int positives;
+    private String scan_id;
+    private String sha1;
+    private String resource;
+    private String response_code;
+    private String  scan_date;
+    private String permalink;
+    private String verbose_msg;
+    private String sha256;
+    private String md5;
 
     public int getTotal() {
         return total;
@@ -105,14 +114,5 @@ public class FullFileReport {
         this.md5 = md5;
     }
 
-    private int positives;
-    private String scan_id;
-    private String sha1;
-    private String resource;
-    private String response_code;
-    private String  scan_date;
-    private String permalink;
-    private String verbose_msg;
-    private String sha256;
-    private String md5;
+
 }
