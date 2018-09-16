@@ -1,7 +1,10 @@
 package hello;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class FullIpReport {
 
     private List<String> detected_urls;
@@ -17,6 +20,7 @@ public class FullIpReport {
     }
 
     public void setDetected_urls(List<String> detected_urls) {
+
         this.detected_urls = detected_urls;
     }
 
