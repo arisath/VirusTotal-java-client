@@ -1,20 +1,22 @@
 package hello;
 
+import java.util.List;
+
 public class FullIpReport {
 
-    private String detected_urls;
+    private List<String> detected_urls;
     private String asn;
     private String country;
     private String response_code;
     private String as_owner;
-    private String resolutions;
+    private List<Resolution> resolutions;
     private String verbose_msg;
 
-    public String getDetected_urls() {
+    public List<String> getDetected_urls() {
         return detected_urls;
     }
 
-    public void setDetected_urls(String detected_urls) {
+    public void setDetected_urls(List<String> detected_urls) {
         this.detected_urls = detected_urls;
     }
 
@@ -50,11 +52,11 @@ public class FullIpReport {
         this.as_owner = as_owner;
     }
 
-    public String getResolutions() {
+    public List<Resolution> getResolutions() {
         return resolutions;
     }
 
-    public void setResolutions(String resolutions) {
+    public void setResolutions(List<Resolution> resolutions) {
         this.resolutions = resolutions;
     }
 

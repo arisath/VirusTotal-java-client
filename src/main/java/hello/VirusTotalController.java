@@ -105,8 +105,8 @@ public class VirusTotalController {
         return result;
     }
 
-    @RequestMapping("/ip-address/report")
-    public String getIpAddressReport(@RequestParam("ipAddress") String ipAddress) {
+    @RequestMapping("/ip-address/reports")
+    public String getIpAddressReports(@RequestParam("ipAddress") String ipAddress) {
 
         RestTemplate restTemplate = new RestTemplate();
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "ip-address/report")
@@ -116,6 +116,19 @@ public class VirusTotalController {
         String result = restTemplate.getForObject(builder.toUriString(), String.class);
         return result;
     }
+
+    @RequestMapping("/ip-address/report")
+    public FullIpReport getIpAddressReport(@RequestParam("ipAddress") String ipAddress) {
+
+        RestTemplate restTemplate = new RestTemplate();
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "ip-address/report")
+                .queryParam("apikey", apiKey)
+                .queryParam("ip", ipAddress);
+
+        FullIpReport result = restTemplate.getForObject(builder.toUriString(), FullIpReport.class);
+        return result;
+    }
+
 
     @RequestMapping("/comments/get")
     public String getComments(@RequestParam("fileDigest") String fileHash) {
