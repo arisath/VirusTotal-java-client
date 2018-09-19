@@ -8,6 +8,7 @@ public class Application {
 
     public static void main(String[] args) {
 
+        Utilities.readFile("md5s.txt");
 
         SpringApplication.run(Application.class, args);
     }
