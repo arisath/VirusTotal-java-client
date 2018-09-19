@@ -10,7 +10,6 @@ public class Scan {
     private String result;
     private String update;
 
-
     public String getDetected() {
         return detected;
     }

@@ -4,14 +4,9 @@ import java.util.Map;
 
 public class FullFileReport {
 
-    public Map<String, Scan> getScans() {
+    private Map<String, Scan> getScans() {
         return scans;
     }
-
-    public void setScans(Map<String, Scan> scans) {
-        this.scans = scans;
-    }
-
     private Map<String, Scan> scans;
     private int total;
 
@@ -25,6 +20,10 @@ public class FullFileReport {
     private String verbose_msg;
     private String sha256;
     private String md5;
+
+    public void setScans(Map<String, Scan> scans) {
+        this.scans = scans;
+    }
 
     public int getTotal() {
         return total;

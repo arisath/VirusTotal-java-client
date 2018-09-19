@@ -8,22 +8,30 @@ import org.springframework.core.io.ClassPathResource;
 import java.io.File;
 import java.io.IOException;
 
-public class Utilities {
+public class Utilities
+{
 
-    static void readFile(String filename) {
+    static void readFile(String filename)
+    {
         String normalizedFilename = FilenameUtils.normalize(filename);
         LineIterator it = null;
-        try {
+        try
+        {
             File file = new ClassPathResource(normalizedFilename).getFile();
             it = FileUtils.lineIterator(file, "UTF-8");
 
-            while (it.hasNext()) {
+            while (it.hasNext())
+            {
                 String line = it.nextLine();
                 System.out.println(line);
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             throw new RuntimeException(e);
-        } finally {
+        }
+        finally
+        {
             LineIterator.closeQuietly(it);
         }
 

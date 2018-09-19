@@ -38,7 +38,6 @@ public class VirusTotalController {
 
         FullFileReport fileReport = restTemplate.getForObject(builder.toUriString(), FullFileReport.class);
 
-
         return fileReport;
     }
 
