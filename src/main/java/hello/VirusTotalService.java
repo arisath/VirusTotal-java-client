@@ -10,12 +10,12 @@ import org.springframework.web.util.UriComponentsBuilder;
 public class VirusTotalService
 {
     @Value("${virusTotalUri}")
-    private  String uri;
+    private String uri;
 
     @Value("${apiKey}")
-    private  String apiKey;
+    private String apiKey;
 
-    public  FullFileReport getVirusTotalFileReport(String fileHash)
+    public FullFileReport getVirusTotalFileReport(String fileHash)
     {
         RestTemplate restTemplate = new RestTemplate();
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "file/report")
@@ -27,7 +27,7 @@ public class VirusTotalService
         return fileReport;
     }
 
-    public  FullFileReport getVirusTotalUrlReport(String url)
+    public FullFileReport getVirusTotalUrlReport(String url)
     {
         RestTemplate restTemplate = new RestTemplate();
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "url/report")
@@ -39,7 +39,7 @@ public class VirusTotalService
         return urlReport;
     }
 
-    public  String sumbitVirusTotalUrlForScan(VirusTotalUrl url)
+    public String sumbitVirusTotalUrlForScan(VirusTotalUrl url)
     {
         RestTemplate restTemplate = new RestTemplate();
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "url/scan")
@@ -51,7 +51,7 @@ public class VirusTotalService
     }
 
 
-    public  String getVirusTotalDomainReport(String domain)
+    public String getVirusTotalDomainReport(String domain)
     {
         RestTemplate restTemplate = new RestTemplate();
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "domain/report")
@@ -62,7 +62,7 @@ public class VirusTotalService
         return result;
     }
 
-    public  FullIpReport getVirusTotalIpAddressReport(String ipAddress)
+    public FullIpReport getVirusTotalIpAddressReport(String ipAddress)
     {
         RestTemplate restTemplate = new RestTemplate();
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "ip-address/report")
@@ -73,7 +73,7 @@ public class VirusTotalService
         return result;
     }
 
-    public  String getVirusTotalComments(String fileHash)
+    public String getVirusTotalComments(String fileHash)
     {
         RestTemplate restTemplate = new RestTemplate();
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "/comments/get")
