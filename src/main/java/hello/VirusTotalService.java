@@ -27,4 +27,27 @@ public class VirusTotalService
         return fileReport;
     }
 
+    public  FullFileReport getVirusTotalUrlReport(String url)
+    {
+        RestTemplate restTemplate = new RestTemplate();
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "url/report")
+                .queryParam("apikey", apiKey)
+                .queryParam("resource", url);
+
+        FullFileReport urlReport = restTemplate.getForObject(builder.toUriString(), FullFileReport.class);
+
+        return urlReport;
+    }
+
+    public  String sumbitVirusTotalUrlForScan(VirusTotalUrl url)
+    {
+        RestTemplate restTemplate = new RestTemplate();
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "url/scan")
+                .queryParam("apikey", apiKey)
+                .queryParam("url", url.getUrl());
+
+        String result = restTemplate.postForObject(builder.toUriString(), null, String.class);
+        return result;
+    }
+
 }
