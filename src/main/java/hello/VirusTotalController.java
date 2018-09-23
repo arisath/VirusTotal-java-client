@@ -68,8 +68,7 @@ public class VirusTotalController
                 .queryParam("apikey", apiKey)
                 .queryParam("resource", fileHash);
 
-        String result = restTemplate.getForObject(builder.toUriString(), String.class);
-        return result;
+        return restTemplate.getForObject(builder.toUriString(), String.class);
     }
 
     @RequestMapping("/url/reports")
@@ -80,8 +79,7 @@ public class VirusTotalController
                 .queryParam("apikey", apiKey)
                 .queryParam("resource", url);
 
-        String result = restTemplate.getForObject(builder.toUriString(), String.class);
-        return result;
+        return restTemplate.getForObject(builder.toUriString(), String.class);
     }
 
     @RequestMapping("/ip-address/reports")
@@ -93,8 +91,7 @@ public class VirusTotalController
                 .queryParam("apikey", apiKey)
                 .queryParam("ip", ipAddress);
 
-        String result = restTemplate.getForObject(builder.toUriString(), String.class);
-        return result;
+        return restTemplate.getForObject(builder.toUriString(), String.class);
     }
 
 }
