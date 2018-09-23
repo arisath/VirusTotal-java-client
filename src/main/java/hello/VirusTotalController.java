@@ -43,58 +43,19 @@ public class VirusTotalController
     @RequestMapping("/domain/report")
     public String getDomainReport(@RequestParam("domain") String domain)
     {
-
-        RestTemplate restTemplate = new RestTemplate();
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "domain/report")
-                .queryParam("apikey", apiKey)
-                .queryParam("domain", domain);
-
-        String result = restTemplate.getForObject(builder.toUriString(), String.class);
-        return result;
-    }
-
-    @RequestMapping("/ip-address/reports")
-    public String getIpAddressReports(@RequestParam("ipAddress") String ipAddress)
-    {
-
-        RestTemplate restTemplate = new RestTemplate();
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "ip-address/report")
-                .queryParam("apikey", apiKey)
-                .queryParam("ip", ipAddress);
-
-        String result = restTemplate.getForObject(builder.toUriString(), String.class);
-        return result;
+        return  virusTotalService.getVirusTotalDomainReport(domain);
     }
 
     @RequestMapping("/ip-address/report")
     public FullIpReport getIpAddressReport(@RequestParam("ipAddress") String ipAddress)
     {
-
-        RestTemplate restTemplate = new RestTemplate();
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "ip-address/report")
-                .queryParam("apikey", apiKey)
-                .queryParam("ip", ipAddress);
-
-        FullIpReport result = restTemplate.getForObject(builder.toUriString(), FullIpReport.class);
-        return result;
+        return  virusTotalService.getVirusTotalIpAddressReport(ipAddress);
     }
-
 
     @RequestMapping("/comments/get")
     public String getComments(@RequestParam("fileDigest") String fileHash)
     {
-
-        RestTemplate restTemplate = new RestTemplate();
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "/comments/get")
-                .queryParam("apikey", apiKey)
-                .queryParam("resource", fileHash);
-
-
-        String result = restTemplate.getForObject(builder.toUriString(), String.class);
-        if (result != null)
-        {
-            return result;
-        } else return "No comments for " + fileHash;
+        return  virusTotalService.getVirusTotalComments(fileHash);
     }
 
     @RequestMapping("/file/reports")
@@ -117,6 +78,19 @@ public class VirusTotalController
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "url/report")
                 .queryParam("apikey", apiKey)
                 .queryParam("resource", url);
+
+        String result = restTemplate.getForObject(builder.toUriString(), String.class);
+        return result;
+    }
+
+    @RequestMapping("/ip-address/reports")
+    public String getIpAddressReports(@RequestParam("ipAddress") String ipAddress)
+    {
+
+        RestTemplate restTemplate = new RestTemplate();
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "ip-address/report")
+                .queryParam("apikey", apiKey)
+                .queryParam("ip", ipAddress);
 
         String result = restTemplate.getForObject(builder.toUriString(), String.class);
         return result;

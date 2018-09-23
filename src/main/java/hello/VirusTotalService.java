@@ -50,4 +50,41 @@ public class VirusTotalService
         return result;
     }
 
+
+    public  String getVirusTotalDomainReport(String domain)
+    {
+        RestTemplate restTemplate = new RestTemplate();
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "domain/report")
+                .queryParam("apikey", apiKey)
+                .queryParam("domain", domain);
+
+        String result = restTemplate.getForObject(builder.toUriString(), String.class);
+        return result;
+    }
+
+    public  FullIpReport getVirusTotalIpAddressReport(String ipAddress)
+    {
+        RestTemplate restTemplate = new RestTemplate();
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "ip-address/report")
+                .queryParam("apikey", apiKey)
+                .queryParam("ip", ipAddress);
+
+        FullIpReport result = restTemplate.getForObject(builder.toUriString(), FullIpReport.class);
+        return result;
+    }
+
+    public  String getVirusTotalComments(String fileHash)
+    {
+        RestTemplate restTemplate = new RestTemplate();
+        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "/comments/get")
+                .queryParam("apikey", apiKey)
+                .queryParam("resource", fileHash);
+
+        String result = restTemplate.getForObject(builder.toUriString(), String.class);
+        if (result != null)
+        {
+            return result;
+        } else return "No comments for " + fileHash;
+    }
+
 }
