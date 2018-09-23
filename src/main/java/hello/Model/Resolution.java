@@ -1,4 +1,4 @@
-package hello;
+package hello.Model;
 
 public class Resolution {
 
