@@ -1,5 +1,6 @@
 package hello;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -8,7 +9,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 
 @RestController
-public class VirusTotalController {
+public class VirusTotalController
+{
+
+
+    @Autowired
+    private VirusTotalService virusTotalService;
+
     @Value("${virusTotalUri}")
     private String uri;
 
@@ -16,8 +23,8 @@ public class VirusTotalController {
     private String apiKey;
 
     @RequestMapping("/file/reports")
-    public String getFileReports(@RequestParam("fileDigest") String fileHash) {
-
+    public String getFileReports(@RequestParam("fileDigest") String fileHash)
+    {
         RestTemplate restTemplate = new RestTemplate();
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "file/report")
                 .queryParam("apikey", apiKey)
@@ -29,20 +36,14 @@ public class VirusTotalController {
 
 
     @RequestMapping("/file/report")
-    public FullFileReport getFileReport(@RequestParam("fileDigest") String fileHash) {
-
-        RestTemplate restTemplate = new RestTemplate();
-        UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "file/report")
-                .queryParam("apikey", apiKey)
-                .queryParam("resource", fileHash);
-
-        FullFileReport fileReport = restTemplate.getForObject(builder.toUriString(), FullFileReport.class);
-
-        return fileReport;
+    public FullFileReport getFileReport(@RequestParam("fileDigest") String fileHash)
+    {
+        return virusTotalService.getVirusTotalFileReport(fileHash);
     }
 
     @RequestMapping("/file/behaviour")
-    public String getFileBehaviour(@RequestParam("fileDigest") String fileHash) {
+    public String getFileBehaviour(@RequestParam("fileDigest") String fileHash)
+    {
 
         RestTemplate restTemplate = new RestTemplate();
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "file/behaviour")
@@ -54,7 +55,8 @@ public class VirusTotalController {
     }
 
     @RequestMapping("/url/reports")
-    public String getUrlReports(@RequestParam("url") String url) {
+    public String getUrlReports(@RequestParam("url") String url)
+    {
 
         RestTemplate restTemplate = new RestTemplate();
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "url/report")
@@ -66,7 +68,8 @@ public class VirusTotalController {
     }
 
     @RequestMapping("/url/report")
-    public FullFileReport getUrlReport(@RequestParam("url") String url) {
+    public FullFileReport getUrlReport(@RequestParam("url") String url)
+    {
 
         RestTemplate restTemplate = new RestTemplate();
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "url/report")
@@ -80,7 +83,8 @@ public class VirusTotalController {
 
     @RequestMapping(value = "/url/scan", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 
-    public String scanUrl(@RequestBody VirusTotalUrl url) {
+    public String scanUrl(@RequestBody VirusTotalUrl url)
+    {
 
         RestTemplate restTemplate = new RestTemplate();
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "url/scan")
@@ -93,7 +97,8 @@ public class VirusTotalController {
 
     @RequestMapping("/domain/report")
 
-    public String getDomainReport(@RequestParam("domain") String domain) {
+    public String getDomainReport(@RequestParam("domain") String domain)
+    {
 
         RestTemplate restTemplate = new RestTemplate();
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "domain/report")
@@ -105,7 +110,8 @@ public class VirusTotalController {
     }
 
     @RequestMapping("/ip-address/reports")
-    public String getIpAddressReports(@RequestParam("ipAddress") String ipAddress) {
+    public String getIpAddressReports(@RequestParam("ipAddress") String ipAddress)
+    {
 
         RestTemplate restTemplate = new RestTemplate();
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "ip-address/report")
@@ -117,7 +123,8 @@ public class VirusTotalController {
     }
 
     @RequestMapping("/ip-address/report")
-    public FullIpReport getIpAddressReport(@RequestParam("ipAddress") String ipAddress) {
+    public FullIpReport getIpAddressReport(@RequestParam("ipAddress") String ipAddress)
+    {
 
         RestTemplate restTemplate = new RestTemplate();
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "ip-address/report")
@@ -130,7 +137,8 @@ public class VirusTotalController {
 
 
     @RequestMapping("/comments/get")
-    public String getComments(@RequestParam("fileDigest") String fileHash) {
+    public String getComments(@RequestParam("fileDigest") String fileHash)
+    {
 
         RestTemplate restTemplate = new RestTemplate();
         UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl(uri + "/comments/get")
@@ -139,7 +147,8 @@ public class VirusTotalController {
 
 
         String result = restTemplate.getForObject(builder.toUriString(), String.class);
-        if (result != null) {
+        if (result != null)
+        {
             return result;
         } else return "No comments for " + fileHash;
     }
