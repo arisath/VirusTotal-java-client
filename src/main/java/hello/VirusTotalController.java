@@ -1,5 +1,7 @@
 package hello;
 
+import hello.Model.FullFileReport;
+import hello.Model.FullIpReport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
