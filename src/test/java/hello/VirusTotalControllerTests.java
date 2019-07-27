@@ -62,11 +62,11 @@ public class VirusTotalControllerTests {
                 .andDo(print()).andExpect(status().isOk());
     }
 
-    @Test
+/*    @Test
     public void getIpReportShouldReturnOK() throws Exception {
         this.mockMvc.perform(get("/ip-address/report").param("ipAddress", testIp))
                 .andDo(print()).andExpect(status().isOk());
-    }
+    }*/
 
     @Test
     public void getDomainReportShouldReturnOK() throws Exception {
