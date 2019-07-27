@@ -2,7 +2,8 @@
 Spring-boot based application for consuming the public API of Virus Total (www.virustotal.com)
 
 [![Generic badge](https://img.shields.io/badge/VirusTotal-SpringBoot-<COLOR>.svg)](https://shields.io/)
-
+[![CircleCI](https://circleci.com/gh/arisath/VirusTotal-java-client/tree/master.svg?style=shield)](https://circleci.com/gh/arisath/VirusTotal-java-client/tree/master)
+[![CircleCI](https://circleci.com/gh/arisath/VirusTotal-java-client/tree/master.svg?style=svg)](https://circleci.com/gh/arisath/VirusTotal-java-client/tree/master)
 
 
 ## Getting Started
