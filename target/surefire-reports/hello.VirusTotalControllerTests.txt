@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: hello.VirusTotalControllerTests
--------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.669 s - in hello.VirusTotalControllerTests
