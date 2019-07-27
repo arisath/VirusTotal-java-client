@@ -1,0 +1,22 @@
+-------------------------------------------------------------------------------
+Test set: hello.VirusTotalControllerTests
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 8.39 s <<< FAILURE! - in hello.VirusTotalControllerTests
+getIpReportShouldReturnOK(hello.VirusTotalControllerTests)  Time elapsed: 2.244 s  <<< ERROR!
+org.springframework.web.util.NestedServletException: 
+Request processing failed; nested exception is org.springframework.web.client.RestClientException: Error while extracting response for type [class hello.Model.FullIpReport] and content type [application/json]; nested exception is org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize instance of `java.lang.String` out of START_OBJECT token; nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.lang.String` out of START_OBJECT token
+ at [Source: (PushbackInputStream); line: 1, column: 30604] (through reference chain: hello.Model.FullIpReport["detected_urls"]->java.util.ArrayList[0])
+	at hello.VirusTotalControllerTests.getIpReportShouldReturnOK(VirusTotalControllerTests.java:67)
+Caused by: org.springframework.web.client.RestClientException: 
+Error while extracting response for type [class hello.Model.FullIpReport] and content type [application/json]; nested exception is org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize instance of `java.lang.String` out of START_OBJECT token; nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.lang.String` out of START_OBJECT token
+ at [Source: (PushbackInputStream); line: 1, column: 30604] (through reference chain: hello.Model.FullIpReport["detected_urls"]->java.util.ArrayList[0])
+	at hello.VirusTotalControllerTests.getIpReportShouldReturnOK(VirusTotalControllerTests.java:67)
+Caused by: org.springframework.http.converter.HttpMessageNotReadableException: 
+JSON parse error: Cannot deserialize instance of `java.lang.String` out of START_OBJECT token; nested exception is com.fasterxml.jackson.databind.exc.MismatchedInputException: Cannot deserialize instance of `java.lang.String` out of START_OBJECT token
+ at [Source: (PushbackInputStream); line: 1, column: 30604] (through reference chain: hello.Model.FullIpReport["detected_urls"]->java.util.ArrayList[0])
+	at hello.VirusTotalControllerTests.getIpReportShouldReturnOK(VirusTotalControllerTests.java:67)
+Caused by: com.fasterxml.jackson.databind.exc.MismatchedInputException: 
+Cannot deserialize instance of `java.lang.String` out of START_OBJECT token
+ at [Source: (PushbackInputStream); line: 1, column: 30604] (through reference chain: hello.Model.FullIpReport["detected_urls"]->java.util.ArrayList[0])
+	at hello.VirusTotalControllerTests.getIpReportShouldReturnOK(VirusTotalControllerTests.java:67)
+
